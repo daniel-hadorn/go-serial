@@ -28,6 +28,7 @@ const (
 	kTCSETS2 = 0x402C542B
 	kBOTHER  = 0x1000
 	kNCCS    = 19
+	kCBAUDEX = 0x1000
 )
 
 //
@@ -96,6 +97,10 @@ func makeTermios2(options OpenOptions) (*termios2, error) {
 		c_cc:     ccOpts,
 	}
 
+        if !IsStandardBaudRate(options.Baudrate) {
+		t2.c_cflag |= kCBAUDEX
+	}
+	
 	switch options.StopBits {
 	case 1:
 	case 2:
