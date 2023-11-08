@@ -97,7 +97,7 @@ func makeTermios2(options OpenOptions) (*termios2, error) {
 		c_cc:     ccOpts,
 	}
 
-        if !IsStandardBaudRate(options.Baudrate) {
+        if !IsStandardBaudRate(options.BaudRate) {
 		t2.c_cflag |= kCBAUDEX
 	}
 	
